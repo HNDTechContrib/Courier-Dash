@@ -23,7 +23,7 @@ service cloud.firestore {
 
     // Scores collection
     match /scores/{scoreId} {
-      allow read: if true;
+      allow read: if isSignedIn();
       allow create: if isSignedIn() 
                     && isValidId(scoreId)
                     && isValidScore(incoming())
